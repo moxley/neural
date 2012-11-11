@@ -12,8 +12,7 @@ comp = Comparisons.new
 comp.add do
   Trial.new.run(1) do |ocr|
     #ocr.net = Ai4r::NeuralNetwork::Backpropagation.new([OCR::INPUTS_COUNT, OCR::INPUTS_COUNT / 2, OCR::SHAPES.length])
-    ocr.net = Ai4r::NeuralNetwork::Backpropagation.new([BasicImage::INPUT_COUNT, OCR::SHAPES.length])
-    ocr.silent = false
+    ocr.net = Ai4r::NeuralNetwork::Backpropagation.new([BasicImage::INPUT_COUNT, ThreeShapes::SHAPES.length])
     ocr
   end.map { |res| puts "Trial res: #{res}" }
 end
@@ -21,7 +20,6 @@ end
 #comp.add do
 #  res = Trial.new.run(5) do |ocr|
 #    ocr.net = Ai4r::NeuralNetwork::Backpropagation.new([OCR::INPUTS_COUNT, OCR::INPUTS_COUNT / 3, OCR::SHAPES.length])
-#    #ocr.silent = false
 #    ocr
 #  end
 #

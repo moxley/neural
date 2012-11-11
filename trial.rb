@@ -4,7 +4,6 @@ class Trial
     error_sum = 0.0
     repeat_count.times do
       o = OCR.new
-      o.silent = true
       o = yield o if block
       res = o.run
       time_sum += res[:utime]

@@ -1,7 +1,8 @@
 class NetEvaluator
-  attr_accessor :net, :training_items, :eval_items, :high_error, :times
+  attr_accessor :net, :training_items, :eval_items, :high_error, :times, :silent
 
   def initialize(net, training_items, eval_items)
+    @silent = false
     @net = net
     @training_items= training_items
     @eval_items = eval_items
@@ -10,11 +11,18 @@ class NetEvaluator
     @times = nil
   end
 
+  def puts(*args)
+    super(*args) unless silent
+  end
+
   def run
     @times = Benchmark.measure do
       train
       eval
     end
+    puts "user time: #{times.utime}"
+    puts "high_error: #{high_error}"
+    {:utime => times.utime, :high_error => high_error}
   end
 
   def train
